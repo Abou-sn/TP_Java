@@ -1,68 +1,171 @@
+import java.util.Scanner;
 public class Date {
-    private int chDay;
-    private int chMonth;
-    private int chYear;
+    private int jour;
+    private int mois;
+    private int annee;
 
-    public Date(int parDay, int parMonth, int parYear) {
-        chDay = parDay;
-        chMonth = parMonth;
-        chYear = parYear;
+    /**
+     * constructeur de la classe Date, qui instancie une date précise
+     *
+     *
+     *
+     * @parameter int parJour, le jour en question
+     * @parameter int parMois, le ois de l'année
+     * @parameter int parAnnee, l'année donnée
+     */
+    public Date(int parJour, int parMois, int parAnnee) {
+        jour =  parJour;
+        mois = parMois;
+        annee = parAnnee;
     }
-
-    public Date(int parYear){
-        chDay = 1;
-        chMonth = 1;
-        chYear = parYear;
-
+    /**
+     * constructeur de la classe Date, qui instancie le premier janvier de l'année
+     *
+     *
+     *
+     * @parameter int parAnnee, l'année donnée
+     */
+    public Date(int parAnnee) {
+        annee = parAnnee;
+        jour = 1;
+        mois = 1;
     }
-
-    public boolean estBisextile() {
-        return ((chYear%4 == 0 && chYear%100 != 0) || chYear%400 == 0);
+    /**
+     * déclare si une année est bissextile
+     *
+     *
+     *
+     * @parameter int parAn, l'année en question
+     * @return Boolean, vrai si l'année est bissextile, faux sinon
+     */
+    public static boolean estBissextile(int parAn) {
+        return parAn % 400 == 0 || (parAn % 4 == 0 && parAn % 100 != 0);
     }
-
-    public boolean estValide(){
-
-        if((chYear<1583) || chMonth<0 || chMonth > 12) {
-            return false;
+    /**
+     * donne le dernier jour d'un mois une certaine année
+     *
+     *
+     * @parameter int parMois, le mois concerné
+     * @parameter int parAn, l'année concernée
+     * @return int, le dernier jour du mois à l'année renseignée
+     */
+    public static int dernierJourMois(int parMois, int parAn) {
+        int nombreJoursMois = 30 ;
+        if (parMois == 1 ||parMois == 3 || parMois == 5 || parMois == 7 || parMois == 8 || parMois == 10 || parMois == 12) {
+            nombreJoursMois += 1;
         }
-
-        if(chDay <0 || chDay>31){
-            return false;
-        }
-
-        if (chMonth == 4 || chMonth == 6 || chMonth == 9 || chMonth == 11) {
-            if (chDay > 30) {
-                System.out.println("Il n'y a que 30 jours pour le mois entré");
-                return false;
+        else if (parMois == 2) {
+            if (estBissextile(parAn)) {
+                nombreJoursMois -= 1;
             }
-
+            else nombreJoursMois -= 2;
         }
+        return nombreJoursMois;
+    }
+    /**
+     * vérifie si la date est valide
+     *
+     *
+     *
+     *
+     * @return Boolean, vrai si la date existe et faux si elle n'existe pas
+     */
+    public static boolean estValide(int parJour, int parMois, int parAnnee) {
+        int nombreJoursMois = dernierJourMois(parMois, parAnnee);
+        return parJour >= 1 && parMois >= 1 && parMois <= 12 && parAnnee >= 1583 && parJour <= nombreJoursMois;
+    }
+    /**
+     * instancie un objet Date avec les valeurs données dans le scanner
+     *
+     *
+     *
+     *
+     * @return Date, la date donnée
+     */
+    public static Date lireDate(){
+        Scanner scanner = new Scanner(System.in);
 
-        if (chMonth == 2) {
-
-            if (estBisextile()) {
-                if (chDay > 29) {
-                    System.out.println("Veuillez entrer un jour valide pour le mois de Fevrier");
-                    return false;
+        int lireJour = scanner.nextInt();
+        int lireMois = scanner.nextInt();
+        int lireAn = scanner.nextInt();
+        return  new Date(lireJour, lireMois, lireAn);
+    }
+    /**
+     * compare deux dates, this et parDate
+     *
+     *
+     *
+     * @parameter Date parDate, la Date à laquelle on compare this Date
+     * @return -1 si this Date précède parDate, 1 si this Date vient après parDate, 0 si elles sont égales
+     */
+    public int compareTo (Date parDate) {
+        if (parDate.annee > annee) {
+            return -1;
+        }
+        if  (parDate.annee == annee) {
+            if (parDate.mois > mois) {
+                return -1;
+            }
+            if (parDate.mois == mois) {
+                if (parDate.jour > jour) {
+                    return -1;
                 }
-            }
-            else  {
-                if (chDay > 28) {
-                    System.out.println("Veuillez entrer un jour valide pour le mois de Fevrier");
-                    return false;
-
-
+                if (parDate.jour == jour) {
+                    return 0;
                 }
+                else return 1;
             }
-
+            else return 1;
         }
-        System.out.println("La date entré est valide ");
-        return true;
+        else return 1;
     }
 
 
+    /**
+     * renvoie la date qui suit celle de l'objet qui appelle
+     *
+     *
+     *
+     *
+     * @return Date, la date du lendemain
+     */
+    public Date dateDuLendemain (){
+        if (!estValide(jour,mois,annee)) {
+            System.out.println("la date n'est pas valide");
+            return null;
+        }
+        if (dernierJourMois(annee, mois) == jour) {
+            if (mois == 12) {
+                return new Date(0, 0, annee + 1);
+            }
+            else return new Date(0, mois + 1, annee);
+        }
+        return new Date(jour+1, mois, annee);
+    }
+
+
+    /**
+     * renvoie la date qui précède celle de l'objet qui appelle
+     *
+     * @return Date, la date de la veille
+     */
+    public Date dateDeLaVeille (){
+        if (!estValide(jour,mois,annee)) {
+            System.out.println("la date n'est pas valide");
+            return null;
+        }
+        if (1 == jour) {
+            if (mois == 1) {
+                return new Date(31, 12, annee - 1);
+            }
+            return new Date(dernierJourMois(annee, mois-1), mois-1, annee);
+        }
+        return  new Date(jour -1, mois, annee);
+    }
 
     public String toString() {
-        return chDay + "/" + chMonth + "/" + chYear;
+        return  jour + " / " + mois + " / " + annee;
     }
-}
+
+
+}²
