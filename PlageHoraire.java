@@ -17,8 +17,19 @@ public class PlageHoraire {
 
 
 
+    public int duree() {
+        return chFin.toMinutes() - chDebut.toMinutes();
+    }
+
+    public int compareTo(PlageHoraire parPlage) {
+        if (this.duree() < parPlage.duree()) return -1;
+        else if (this.duree() > parPlage.duree()) return 1;
+        else return 0;
+    }
+
+
     public String toString() {
-        return "Debut :"+chDebut + " - " +"Fin :"+ chFin;
+        return chDebut + " - " + chFin + " durée : "+ this.duree()/60+"h" + this.duree()%60 + " minutes";
     }
 
 }
