@@ -16,4 +16,27 @@ public class Reservation {
         chPlageHoraire = parPlageHoraire;
 
     }
+
+    /**
+     *
+     * @param parReservation La reservation à comparer avec l'objet appelant
+     * @return -1 this est avant parReservation 1 this est après et 0 dans les autres cas
+     */
+    public int compareTo(Reservation parReservation) {
+        if (this.chDate == parReservation.chDate) return chPlageHoraire.compareTo(parReservation.chPlageHoraire);
+        else return chDate.compareTo(parReservation.chDate);
+    }
+
+    public boolean estValide() {
+        return chPlageHoraire.estValide() || Date.estValide(chDate.getJour(),chDate.getMois(),chDate.getAnnee());
+    }
+
+    /**
+     * Affiche la reservation sous forme de chaine de caractère
+     *
+     * @return String de la forme Titre, Date, Plage horaire, durée
+     */
+    public String toString() {
+        return chTitre + ", " + chDate + ", " + chPlageHoraire;
+    }
 }

@@ -30,6 +30,16 @@ public class Date {
         jour = 1;
         mois = 1;
     }
+
+    public int getJour() {
+        return jour;
+    }
+    public int getMois() {
+        return mois;
+    }
+    public int getAnnee() {
+        return annee;
+    }
     /**
      * déclare si une année est bissextile
      *
