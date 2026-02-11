@@ -20,7 +20,7 @@ public class Reservation {
     /**
      *
      * @param parReservation La reservation à comparer avec l'objet appelant
-     * @return -1 this est avant parReservation 1 this est après et 0 dans les autres cas
+     * @return -1 si this est avant parReservation 1 si this est après et 0 dans les autres cas
      */
     public int compareTo(Reservation parReservation) {
         if (this.chDate == parReservation.chDate) return chPlageHoraire.compareTo(parReservation.chPlageHoraire);
