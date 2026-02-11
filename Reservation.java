@@ -2,7 +2,6 @@ public class Reservation {
     private String chTitre;
     private Date chDate ;
     private PlageHoraire chPlageHoraire;
-
     /**
      * Constructeur de la classe Reservation
      *
@@ -16,7 +15,6 @@ public class Reservation {
         chPlageHoraire = parPlageHoraire;
 
     }
-
     /**
      *
      * @param parReservation La reservation à comparer avec l'objet appelant
@@ -29,6 +27,10 @@ public class Reservation {
 
     public boolean estValide() {
         return chPlageHoraire.estValide() || Date.estValide(chDate.getJour(),chDate.getMois(),chDate.getAnnee());
+    }
+
+    public Date getDate() {
+        return chDate;
     }
 
     /**

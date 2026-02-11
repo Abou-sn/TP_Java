@@ -1,9 +1,11 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Planning {
     private Reservation [] tabReservations;
-    private final int TAILLE_TAB;
+    private static final int TAILLE_TAB = 3;
 
     public Planning(int parTailleTab) {
-        TAILLE_TAB = parTailleTab;
         tabReservations = new Reservation[TAILLE_TAB];
     }
 
@@ -25,7 +27,10 @@ public class Planning {
 
             for (Reservation autreReservation  : tabReservations) { // Vérifie que la reservation est compatible avec les autres existante
                 if (autreReservation != null) {
-                    if (reservation.compareTo(autreReservation) == 0) return false;
+                    if (reservation.compareTo(autreReservation) == 0) {
+                        System.out.println("Il y a déja un reservation à ce créneau");
+                        return false;
+                    }
                 }
             }
 
@@ -36,11 +41,20 @@ public class Planning {
                 }
             }
         }
+        System.out.println("Le tableau est plein ou la réservation est invalide");
         return false;
     }
 
+    public Reservation getReservation(Date parDate){
+        for (Reservation res : tabReservations){
+            if (res.getDate().compareTo(parDate) == 0) return res;
+        }
+        return null;
+    }
+
+
     public String toString() {
-        return "Planning : " + tabReservations ;
+        return "Planning : " + Arrays.toString(tabReservations) ;
     }
 }
 
