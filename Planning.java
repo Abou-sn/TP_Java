@@ -52,6 +52,36 @@ public class Planning {
         return null;
     }
 
+    public Reservation [] getReservations(Date parDate) {
+        int tailleTab = 0;
+        for (Reservation res : tabReservations){
+            if (res.getDate().compareTo(parDate) == 0) tailleTab++;
+        }
+
+        Reservation [] tab = new Reservation[tailleTab];
+        int i = 0;
+        for (Reservation res : tabReservations){
+            if (res.getDate().compareTo(parDate) == 0) tab[i++] = res;
+        }
+        return tab;
+
+    }
+
+    public int plusAncienneReservation(int parDebut, int parFin) {
+
+        int indicePlusPetit = parDebut;
+        Reservation plusAncienne = tabReservations[parDebut];
+
+        for (int i = parDebut; i < parFin; i++) {
+            if (tabReservations[i].compareTo(plusAncienne) < 0) {
+                indicePlusPetit = i;
+                plusAncienne = tabReservations[i];
+            }
+        }
+
+        return indicePlusPetit;
+    }
+
 
     public String toString() {
         return "Planning : " + Arrays.toString(tabReservations) ;

@@ -9,6 +9,5 @@ public class ClientPlageHoraire {
      System.out.println(ph); //Affichage de la plage horaire
      System.out.println(ph.estValide()); // Affichage de la validité
 
-
     }
 }

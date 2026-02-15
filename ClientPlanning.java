@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ClientPlanning {
     public static void main(String[] args) {
         String titre1 = "Muscu";
@@ -9,7 +11,7 @@ public class ClientPlanning {
         PlageHoraire ph2 = new PlageHoraire(new Horaire(20,45),new Horaire(21,30));
 
         String titre3 = "Douche";
-        Date d3 = new Date(13,02,2025);
+        Date d3 = new Date(15,02,2025);
         PlageHoraire ph3 = new PlageHoraire(new Horaire(21,30),new Horaire(22,00));
 
         Reservation r1 = new Reservation(titre1,d1, ph1);
@@ -23,5 +25,7 @@ public class ClientPlanning {
         monPlanning.ajout(r1); monPlanning.ajout(r2); monPlanning.ajout(r3);
 
         System.out.println(monPlanning);
+
+        System.out.println(Arrays.toString(monPlanning.getReservations(d2)));
     }
 }
