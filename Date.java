@@ -1,8 +1,8 @@
 import java.util.Scanner;
 public class Date {
-    private int jour;
-    private int mois;
-    private int annee;
+    protected int jour;
+    protected int mois;
+    protected int annee;
 
     /**
      * constructeur de la classe Date, qui instancie une date précise
@@ -29,6 +29,10 @@ public class Date {
         annee = parAnnee;
         jour = 1;
         mois = 1;
+    }
+
+    public Date() {
+
     }
 
     public int getJour() {
