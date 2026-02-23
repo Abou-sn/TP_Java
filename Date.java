@@ -150,9 +150,9 @@ public class Date {
         }
         if (dernierJourMois(annee, mois) == jour) {
             if (mois == 12) {
-                return new Date(0, 0, annee + 1);
+                return new Date(1, 1, annee + 1);
             }
-            else return new Date(0, mois + 1, annee);
+            else return new Date(1, mois + 1, annee);
         }
         return new Date(jour+1, mois, annee);
     }
