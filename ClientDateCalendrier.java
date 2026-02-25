@@ -1,4 +1,4 @@
-public class ClienDateCalendrier {
+public class ClientDateCalendrier {
     public static void main(String[] args) {
 
         DateCalendrier dc4 = new DateCalendrier(31, 1, 2025);

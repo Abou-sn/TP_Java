@@ -172,7 +172,7 @@ public class Date {
             if (mois == 1) {
                 return new Date(31, 12, annee - 1);
             }
-            return new Date(dernierJourMois(annee, mois-1), mois-1, annee);
+            return new Date(dernierJourMois(mois-1, annee), mois-1, annee);
         }
         return  new Date(jour -1, mois, annee);
     }
