@@ -1,5 +1,6 @@
 import java.util.Calendar;
-public class DateCalendrier extends Date{
+public class DateCalendrier extends Date implements Comparable <Date> {
+
     private int jourSemaine;
 
     public DateCalendrier()  {
@@ -46,7 +47,5 @@ public class DateCalendrier extends Date{
     public String toString() {
         return  jour + "/" + mois + "/" + annee + " --- Jour de la semaine : " + jourSemaine;
     }
-
-
 
 }
