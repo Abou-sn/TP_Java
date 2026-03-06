@@ -1,4 +1,4 @@
-public class PlageHoraire {
+public class PlageHoraire implements Comparable<PlageHoraire>{
     private final static int DUREE_MIN = 30;
     private Horaire chDebut;
     private Horaire chFin;
@@ -13,7 +13,7 @@ public class PlageHoraire {
         chFin = parFin;
     }
 
-    /**
+     /**
      * Regarde si la plage horarire est valide
      * @return un Booléen
      */

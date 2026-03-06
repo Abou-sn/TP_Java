@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ClientDateCalendrier {
     public static void main(String[] args) {
 
@@ -7,8 +9,15 @@ public class ClientDateCalendrier {
         DateCalendrier dc5 = dc4.dateDuLendemain();
         System.out.println(dc5);
 
-        System.out.println(dc5.dateDeLaVeille());
+        DateCalendrier dc6 = dc5.dateDeLaVeille().dateDeLaVeille();
+        System.out.println(dc6);
 
+        DateCalendrier [] tabDeDate = {dc4,dc5,dc6};
+
+
+        System.out.println(Arrays.toString(tabDeDate));
+        Arrays.sort(tabDeDate);
+        System.out.println(Arrays.toString(tabDeDate));
     }
 
 

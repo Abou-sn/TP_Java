@@ -1,4 +1,4 @@
-public class Reservation {
+public class Reservation implements Comparable <Reservation>{
     private String chTitre;
     private Date chDate ;
     private PlageHoraire chPlageHoraire;
