@@ -18,7 +18,11 @@ public class ClientDateCalendrier {
         System.out.println(Arrays.toString(tabDeDate));
         Arrays.sort(tabDeDate);
         System.out.println(Arrays.toString(tabDeDate));
-    }
 
+        DateCalendrier dc7 = new DateCalendrier(1,5,2026);
+
+        System.out.println(dc7);
+
+    }
 
 }

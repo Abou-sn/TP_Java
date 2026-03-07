@@ -45,7 +45,10 @@ public class DateCalendrier extends Date implements Comparable <Date> {
 
     @Override
     public String toString() {
-        return  jour + "/" + mois + "/" + annee + " --- Jour de la semaine : " + jourSemaine;
+        ConstantesCalendrier.Jours [] tabJours = ConstantesCalendrier.Jours.values();
+        ConstantesCalendrier.Mois [] tabMois = ConstantesCalendrier.Mois.values();
+
+        return  tabJours[jourSemaine-1].toString() +" " + jour + " " + tabMois[mois -1].toString() +" " + annee ;
     }
 
 }
